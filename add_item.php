@@ -5,45 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Home page </title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        /* Float four columns side by side */
-        .column {
-            float: left;
-            width: 25%;
-            padding: 0 10px;
-        }
-
-        /* Remove extra left and right margins, due to padding */
-        .row {margin: 0 -5px;}
-
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Responsive columns */
-        @media screen and (max-width: 600px) {
-            .column {
-                width: 100%;
-                display: block;
-                margin-bottom: 20px;
-            }
-        }
-
-        /* Style the counter cards */
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            padding: 16px;
-            text-align: center;
-            background-color: #f1f1f1;
-        }
-    </style>
 </head>
 <body>
 <navbar>
@@ -66,14 +27,30 @@
 <div class="jumbotron-custom">
     <div class="jumbotron-text">
         <h1>Kitchen Ready</h1>
-        <p>Check your inventory or add new items</p>
-        <a href="add_item.php?selected=1"><button class="btn">Add item</button></a>
+        <p>Here you can add items to your inventory</p>
     </div>
 </div>
 
-<?php include('inventory_cards.php'); ?>
-
-
-<script src="scripts/alert.js"></script>
+<div class="addItem">
+    <img src="<?php echo $img_url; ?>" id="product_img" width="300" height="300" style="float: left;" />
+    <form method="post" action="inventory.php">
+        <h1 style="text-align: center;">Add an item</h1>
+        <div class="input-group">
+            <label>Select product</label>
+        </div>
+        <div class="input-group">
+            <select style="color: white;" onchange="change_img()" class="form-control" id="product_select" name="name">
+                <?php include('get_products.php'); ?>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Quantity</label>
+            <input type="number" name="quantity">
+        </div>
+        <button type="submit" name="add_item" class="btn">Add item</button>
+    </form>
+    <script src="scripts/add_img_selector.js"></script>
+    <script src="scripts/select_styling.js"></script>
+</div>
 </body>
 </html>

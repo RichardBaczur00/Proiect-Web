@@ -7,6 +7,10 @@
     $email = '';
     $password_1 = '';
     $password_2 = '';
+    $img_url = '';
+    $quantity = 0;
+    $new_quantity = 0;
+    $user_id = 0;
     $errors = array();
     $items = array();
 
@@ -72,6 +76,36 @@
         }
     }
 
+    function already_exists($db, $user_id, $product_id)
+    {
+        $query = "SELECT id, Cantitate FROM inventory WHERE user_id='$user_id' AND Produs='$product_id'";
+        $result = mysqli_query($db, $query);
+        if (mysqli_num_rows($result) == 0) return false;
+        return mysqli_fetch_array($result);
+    }
+
+    if (isset($_POST['add_item'])) {
+        $user_id = $_SESSION['uid'];
+        $quantity = $_POST['quantity'];
+        $product_id = $_POST['name'];
+
+        if ($data=already_exists($db, $user_id, $product_id))
+        {
+            $inventory_id = $data[0];
+            $new_quantity = $data[1] + $quantity;
+            echo $inventory_id;
+            echo " ";
+            echo $new_quantity;
+            $query = "UPDATE inventory SET Cantitate='$new_quantity' WHERE  id='$inventory_id'";
+        }
+        else
+        {
+            $query = "INSERT INTO inventory (Produs, Cantitate, user_id) 
+                    VALUES ('$product_id', '$quantity', '$user_id')";
+        }
+        mysqli_query($db, $query);
+    }
+
     if (isset($_GET['logout'])) {
         session_destroy();
         unset($_SESSION['username']);
@@ -79,5 +113,12 @@
     }
 
     if (isset($_GET['inventoryfid'])) {
+        $user_id = $_GET['inventoryfid'];
+    }
 
+    if (isset($_GET['selected'])) {
+        $query = "SELECT * FROM ingredients WHERE id = " . $_GET['selected'];
+        $result = mysqli_query($db, $query);
+
+        $img_url = mysqli_fetch_row($result)[2];
     }

@@ -11,7 +11,7 @@
     <ul>
         <li><img src="Resources/logo.png" width="50" height="50" alt="Logo"</li>
         <li style="margin-left: 10px;"><a href="index.php" class="active">Home</a></li>
-        <li><a href="#">Recipes</a></li>
+        <li><a href="recipes.php">Recipes</a></li>
         <li><a href="#">Get recipe</a></li>
         <li><a href="inventory.php?inventoryfid=<?php echo $_SESSION["uid"]; ?>">Inventory</a></li>
         <?php if (isset($_SESSION['username'])): ?>
@@ -24,7 +24,7 @@
     </ul>
     </navbar>
 
-    <div class="jumbotron">
+    <div class="jumbotron-custom">
         <div class="jumbotron-text">
             <h1>Kitchen Ready</h1>
             <p>Are you kitchen ready?</p>
