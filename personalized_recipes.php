@@ -13,8 +13,8 @@
     <ul>
         <li><img src="Resources/logo.png" width="50" height="50" alt="Logo"</li>
         <li style="margin-left: 10px;"><a href="index.php">Home</a></li>
-        <li><a href="recipes.php" class="active">Recipes</a></li>
-        <li><a href="personalized_recipes.php?uid=<?php echo $_SESSION['uid']; ?>">Get recipe</a></li>
+        <li><a href="recipes.php">Recipes</a></li>
+        <li><a href="personalized_recipes.php?uid=<?php echo $_SESSION['uid']; ?>" class="active">Get recipe</a></li>
         <li><a href="inventory.php?inventoryfid=<?php echo $_SESSION["uid"]; ?>">Inventory</a></li>
         <?php if (isset($_SESSION['username'])): ?>
             <li style="float: right;"><a href="index.php?logout=1" style="color:red">Logout</a></li>

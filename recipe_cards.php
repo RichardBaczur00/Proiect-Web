@@ -15,7 +15,7 @@
     }
 
     $i = 1;
-    echo "<div class='row'>";
+    echo "<div class='row' style='margin-top: 16px;'>";
     while ($row=mysqli_fetch_array($result)) {
         $id = $row[0];
         $name = $row[1];
