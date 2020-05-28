@@ -26,7 +26,6 @@
                     <h3>" . $name . "</h3>
                     <p>Quantity " . $quantity . "</p>
                 </div> </div>";
-
     }
 
     $i = 1;
@@ -50,4 +49,8 @@
             echo "<div class='row'>";
         }
         $i += 1;
+        mysqli_free_result($result_product);
     }
+    mysqli_free_result($result_user_inventory);
+
+

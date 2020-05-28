@@ -5,6 +5,7 @@
 
 body, html {
     font-size:120%;
+    overflow-x: hidden;
 }
 
 .header {
@@ -109,7 +110,7 @@ li a:hover:not(.active) {
 }
 
 .jumbotron-custom {
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Resources/home_bg.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../Resources/home_bg.jpg');
     height: 600px;
     background-position: center;
     background-repeat: no-repeat;

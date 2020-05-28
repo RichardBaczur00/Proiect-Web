@@ -3,47 +3,10 @@
 <html lang="en" xmlns:float="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Home page </title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        /* Float four columns side by side */
-        .column {
-            float: left;
-            width: 25%;
-            padding: 0 10px;
-        }
-
-        /* Remove extra left and right margins, due to padding */
-        .row {margin: 0 -5px;}
-
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Responsive columns */
-        @media screen and (max-width: 600px) {
-            .column {
-                width: 100%;
-                display: block;
-                margin-bottom: 20px;
-            }
-        }
-
-        /* Style the counter cards */
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            padding: 16px;
-            text-align: center;
-            background-color: #f1f1f1;
-        }
-    </style>
+    <title> Inventory </title>
+    <link rel="icon" type="image/png" href="Resources/logo.png">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/card_style.css" />
 </head>
 <body>
 <navbar>
@@ -51,7 +14,7 @@
         <li><img src="Resources/logo.png" width="50" height="50" alt="Logo"</li>
         <li style="margin-left: 10px;"><a href="index.php"">Home</a></li>
         <li><a href="recipes.php">Recipes</a></li>
-        <li><a href="#">Get recipe</a></li>
+        <li><a href="personalized_recipes.php?uid=<?php echo $_SESSION['uid']; ?>">Get recipe</a></li>
         <li><a href="inventory.php" class="active">Inventory</a></li>
         <?php if (isset($_SESSION['username'])): ?>
             <li style="float: right;"><a href="index.php?logout=1" style="color:red">Logout</a></li>

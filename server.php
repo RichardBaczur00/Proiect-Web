@@ -122,3 +122,39 @@
 
         $img_url = mysqli_fetch_row($result)[2];
     }
+
+    $recipe_id='';
+    $recipe_name='';
+    $recipe_steps='';
+    $recipe_image='';
+    $recipe_ingredients='';
+    if (isset($_GET['recipe_id']))
+    {
+        $recipe_id = $_GET['recipe_id'];
+        $query = "SELECT * FROM recipe WHERE id='$recipe_id'";
+        $result = mysqli_query($db, $query);
+
+        $row = mysqli_fetch_row($result);
+        $recipe_name=$row[1];
+        $recipe_image=$row[2];
+        $recipe_steps=$row[3];
+    }
+
+    if (isset($_GET['done'])) {
+        $recipe_id = $_GET['recipe_id'];
+        $query_bridge = "SELECT * FROM recipe_inventory_bridge WHERE recipe_id='$recipe_id'";
+        $result_bridge = mysqli_query($db, $query_bridge);
+
+        while ($row=mysqli_fetch_array($result_bridge)) {
+            $ingredient_id = $row[2];
+            $quantity = $row[3];
+
+            $inventory_query = already_exists($db, $_SESSION['uid'], $ingredient_id);
+            $inventory_id = $inventory_query[0];
+            $old_quantity = $inventory_query[1];
+            $new_quantity = $old_quantity - $quantity;
+
+            $query = "UPDATE inventory SET Cantitate='$new_quantity' WHERE  id='$inventory_id'";
+            mysqli_query($db, $query);
+        }
+    }
